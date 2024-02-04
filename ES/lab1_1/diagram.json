@@ -1,0 +1,39 @@
+{
+	"version": 1,
+	"author": "Anonymous maker",
+	"editor": "wokwi",
+	"parts": [
+		{
+			"type": "wokwi-arduino-uno",
+			"id": "uno",
+			"top": 0,
+			"left": 0,
+			"attrs": {}
+		},
+		{
+			"type": "wokwi-led",
+			"id": "led1",
+			"top": -118.8,
+			"left": 71,
+			"attrs": { "color": "red" }
+		},
+		{
+			"type": "wokwi-resistor",
+			"id": "r1",
+			"top": -72.85,
+			"left": 134.4,
+			"attrs": { "value": "1000" }
+		}
+	],
+	"connections": [
+		["led1:C", "uno:GND.1", "green", ["v38.4", "h0.4"]],
+		["led1:A", "r1:1", "green", ["v0"]],
+		["r1:2", "uno:13", "green", ["v0", "h18", "v28.8", "h-86.4"]]
+	],
+	"dependencies": {},
+	"serialMonitor": {
+		"display": "always",
+		"newline": "lf",
+		"convertEol": false
+	}
+}
