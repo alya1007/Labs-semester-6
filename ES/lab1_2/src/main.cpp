@@ -5,6 +5,8 @@
 const int LED_RED = 10;
 const int LED_GREEN = 11;
 
+const int BAUD_RATE = 9600;
+
 const int DELAY = 1000;
 
 const int PASSWORD_LENGTH = 5;
@@ -30,6 +32,17 @@ int keyCount = 0;
 const char PASSPORT[PASSWORD_LENGTH] = "1234";
 char introducedPassport[PASSWORD_LENGTH];
 
+int putChar(char c, FILE *fp)
+{
+  if (c == '\n')
+  {
+    Serial.write('\n');
+    Serial.write('\r');
+    return 0;
+  }
+  return !Serial.write(c);
+}
+
 void ClearKeypad()
 {
   lcd.clear();
@@ -40,6 +53,8 @@ void ClearKeypad()
 
 void setup()
 {
+  Serial.begin(BAUD_RATE);
+
   pinMode(LED_RED, OUTPUT);
   pinMode(LED_GREEN, OUTPUT);
   digitalWrite(LED_RED, LOW);
@@ -47,6 +62,13 @@ void setup()
 
   lcd.begin(16, 2);
   ClearKeypad();
+
+  fdevopen(putChar, nullptr);
+
+  while (!Serial)
+    ;
+  printf("Serial port is ready!\n");
+  printf("Arduino is ready!\n");
 }
 
 void loop()
@@ -79,7 +101,7 @@ void loop()
       ClearKeypad();
       digitalWrite(LED_RED, LOW);
     }
-    keyCount = 0; // Reset key count after password check
+    keyCount = 0;
   }
 
   if (customKey && (keyCount < 4) && (customKey != '=') && (customKey != 'C'))
