@@ -29,8 +29,8 @@ Keypad customKeypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 int keyCount = 0;
 
-const char PASSPORT[PASSWORD_LENGTH] = "1234";
-char introducedPassport[PASSWORD_LENGTH];
+const char PASSWORD[PASSWORD_LENGTH] = "1234";
+char introducedPassword[PASSWORD_LENGTH];
 
 int putChar(char c, FILE *fp)
 {
@@ -83,7 +83,7 @@ void loop()
 
   if (customKey == '=')
   {
-    if (strncmp(introducedPassport, PASSPORT, keyCount) == 0)
+    if (strncmp(introducedPassword, PASSWORD, keyCount) == 0)
     {
       ClearKeypad();
       digitalWrite(LED_GREEN, HIGH);
@@ -107,7 +107,7 @@ void loop()
   if (customKey && (keyCount < 4) && (customKey != '=') && (customKey != 'C'))
   {
     lcd.print('*');
-    introducedPassport[keyCount] = customKey;
+    introducedPassword[keyCount] = customKey;
     keyCount++;
   }
 }
