@@ -1,0 +1,18 @@
+:root {
+	--primary-color: #96b08d;
+	--secondary-color: #ffd504;
+	--font-color: #050505;
+	--bg-color: #ffffff;
+	--border-radius: 0.25rem;
+	--font-size: 1rem;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+	font-size: var(--font-size);
+	color: var(--font-color);
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	background-color: var(--bg-color);
+}
