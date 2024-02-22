@@ -372,3 +372,50 @@ body {
 .projects__items__item__subtitle {
 	font-weight: 300;
 }
+
+/* Testimonials */
+
+#testimonials {
+	width: 70%;
+	margin: 150px auto 0;
+	display: flex;
+}
+
+.testimonials__image {
+	/* flex: 1; */
+	/* width: 50%; */
+	height: 600px;
+}
+
+.testimonials__text {
+	display: flex;
+	flex-direction: column;
+}
+
+.testimonials__text__title {
+	flex: 1;
+	font-size: 3rem;
+	font-weight: 500;
+	text-align: left;
+	padding: 0 70px;
+	position: relative;
+}
+
+.testimonials__text__quotes {
+	color: var(--secondary-color);
+	font-size: 20rem;
+	position: absolute;
+	top: 80px;
+}
+
+.testimonials__text__description {
+	flex: 2;
+	background-color: var(--primary-color);
+	padding: 0 70px;
+	color: var(--bg-color);
+	padding-top: 100px;
+	font-size: 1.2rem;
+	font-weight: 500;
+	line-height: 1.8;
+	text-align: left;
+}
