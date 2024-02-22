@@ -2,6 +2,7 @@
 	--primary-color: #96b08d;
 	--secondary-color: #ffd504;
 	--font-color: #050505;
+	--font-color-light: #505050;
 	--bg-color: #ffffff;
 	--border-radius: 0.25rem;
 	--font-size: 1rem;
@@ -103,4 +104,49 @@ body {
 
 #statistics {
 	padding-top: 450px;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.statistics__text {
+	display: flex;
+}
+
+.statistics__text h3 {
+	flex: 1;
+	font-size: 2.7rem;
+	font-weight: 600;
+	line-height: 1.1;
+	text-align: left;
+}
+
+.statistics__text h5 {
+	flex: 1;
+	color: var(--font-color-light);
+	line-height: 1.8;
+	text-align: left;
+}
+
+.statistics__container {
+	display: flex;
+	justify-content: space-between;
+	padding: 50px 0;
+	margin-top: 20px;
+}
+
+.statistics__data {
+	text-align: left;
+}
+
+.statistics__data__number {
+	font-size: 4rem;
+	font-weight: 600;
+}
+
+.statistics__data__number span {
+	color: var(--secondary-color);
+}
+
+.statistics__data__label {
+	font-weight: 600;
 }
