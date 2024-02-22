@@ -57,7 +57,7 @@ body {
 	color: var(--hover);
 }
 
-.landing__button {
+.button {
 	background-color: var(--bg-color);
 	color: var(--primary-color);
 	border: none;
@@ -68,7 +68,7 @@ body {
 	transition: 0.3s ease;
 }
 
-.landing__button:hover {
+.button:hover {
 	background-color: var(--hover);
 }
 
@@ -149,4 +149,60 @@ body {
 
 .statistics__data__label {
 	font-weight: 600;
+}
+
+/* Walkthrough */
+
+#walkthrough {
+	margin-top: 100px;
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+
+.walkthrough__left {
+	margin-top: 215px;
+	flex: 1;
+	position: relative;
+}
+
+.walkthrough__box {
+	background-color: var(--primary-color);
+	width: 50%;
+	height: 600px;
+}
+
+.walkthrough__image {
+	width: 70%;
+	position: absolute;
+	left: 120px;
+	bottom: 120px;
+}
+
+.walkthrough__right {
+	flex: 1;
+	margin-top: 140px;
+	padding-right: 100px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+.walkthrough__title {
+	font-size: 3rem;
+	font-weight: 600;
+}
+
+.walkthrough__description {
+	font-weight: 400;
+	margin-top: 40px;
+	line-height: 2.3;
+}
+
+.walkthrough__button {
+	background-color: var(--secondary-color);
+	color: var(--font-color);
+	margin-top: auto;
+	width: 25%;
+	margin-bottom: 119px;
 }
