@@ -5,6 +5,7 @@
 	--bg-color: #ffffff;
 	--border-radius: 0.25rem;
 	--font-size: 1rem;
+	--hover: #e7e3e2;
 }
 
 body {
@@ -15,4 +16,91 @@ body {
 	margin: 0;
 	text-align: center;
 	background-color: var(--bg-color);
+}
+
+/* Landing Page */
+
+#landing {
+	padding-top: 50px;
+	background-color: var(--primary-color);
+	color: var(--bg-color);
+}
+
+.landing__header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 13%;
+	align-items: center;
+}
+
+#logo {
+	font-size: 2rem;
+	font-weight: 500;
+}
+
+.navigation {
+	display: flex;
+	justify-content: space-between;
+	width: 60%;
+}
+
+.navigation a {
+	text-decoration: none;
+	color: var(--bg-color);
+	padding: 0.5rem 1rem;
+	text-transform: capitalize;
+	transition: 0.3s ease;
+}
+
+.navigation a:hover {
+	color: var(--hover);
+}
+
+.landing__button {
+	background-color: var(--bg-color);
+	color: var(--primary-color);
+	border: none;
+	padding: 1rem 1.5rem;
+	font-size: 0.8rem;
+	font-weight: 700;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+.landing__button:hover {
+	background-color: var(--hover);
+}
+
+.landing__main {
+	position: relative;
+}
+
+.title {
+	font-size: 5rem;
+	font-weight: 600;
+	width: 70%;
+	margin: 150px auto 0;
+}
+
+.description {
+	font-weight: 300;
+	width: 40%;
+	margin: 40px auto 0;
+	line-height: 1.8;
+	padding-bottom: 430px;
+}
+
+.landing__image {
+	position: absolute;
+	top: 380px;
+	left: 0;
+	right: 0;
+	width: 1070px;
+	margin: 0 auto;
+}
+
+/* Statistics */
+
+#statistics {
+	padding-top: 450px;
 }
