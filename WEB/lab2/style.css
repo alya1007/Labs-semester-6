@@ -173,7 +173,7 @@ body {
 }
 
 .walkthrough__image {
-	width: 480px;
+	width: 70%;
 	position: absolute;
 	left: 140px;
 	bottom: 120px;
@@ -285,11 +285,10 @@ body {
 }
 
 .work-flow__image {
-	/* width: 70%; */
+	width: 63%;
 	position: absolute;
 	right: 180px;
 	top: 90px;
-	height: 700px;
 }
 
 /* Projects */
@@ -382,7 +381,8 @@ body {
 }
 
 .testimonials__image {
-	height: 600px;
+	/* height: 600px; */
+	width: 43%;
 }
 
 .testimonials__text {
