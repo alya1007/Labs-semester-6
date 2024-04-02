@@ -1,18 +1,46 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+int relayPin = 3;
+String command;
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+int serial_putchar(char c, FILE *stream)
+{
+  Serial.write(c);
+  return 0;
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+FILE serial_stdout;
+
+void setup()
+{
+  pinMode(relayPin, OUTPUT);
+  Serial.begin(9600);
+
+  fdev_setup_stream(&serial_stdout, serial_putchar, NULL, _FDEV_SETUP_WRITE);
+  stdout = &serial_stdout;
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+  char message[100];
+  memset(message, 0, 100);
+  if (Serial.available() > 0)
+  {
+    command = Serial.readStringUntil('\n');
+  }
+
+  if (command.startsWith("led on"))
+  {
+    digitalWrite(relayPin, HIGH);
+    printf("LED turned on\n");
+  }
+  else if (command.startsWith("led off"))
+  {
+    digitalWrite(relayPin, LOW);
+    printf("LED turned off\n");
+  }
+  else
+  {
+    printf("Invalid command\n");
+  }
 }
