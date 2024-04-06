@@ -1,7 +1,5 @@
 #include <LiquidCrystal_I2C.h>
 
-#include <LiquidCrystal_I2C.h>
-
 int relayPin = 3;
 String command;
 #define enA 9
@@ -10,10 +8,7 @@ String command;
 #define lcdAddress 32
 const int defaultSpeed = 255;
 const int minSpeed = -100;
-const int linkSpeed = 0;
 const int maxSpeed = 100;
-const float percentTransform = 0.01;
-const int timeDelay = 3000;
 const int nullSpeed = 0;
 const int lcdDimensions[2] = {16, 2};
 const float normalizeFactor = 0.01;
