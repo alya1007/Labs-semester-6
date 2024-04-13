@@ -46,10 +46,10 @@ int previousPosition = 0;
 double lastError = 0, rateError = 0;
 volatile int position = 0; // This variable is changed within the interrupt service routine
 
-// PID constants (Tune these for your specific system)
-const float kp = 0.5;  // Proportional gain
-const float ki = 0.11; // Integral gain
-const float kd = 0;    // Derivative gain
+// PID constants
+const float kp = 1.0;  // Proportional gain
+const float ki = 0.01; // Integral gain
+const float kd = 0.1;  // Derivative gain
 
 // ADC - analog to digital converter
 #define ADC_MIN 0
@@ -108,35 +108,39 @@ void setMotor(int motorDirection, int pwmValue)
     }
 }
 
-// track the total counts for a full revolution
-static int totalCounts = 0;
-
 // Encoder reading
 void readEncoder()
 {
+    static int lastA = LOW;
+    int a = digitalRead(ENCODER_PIN_A);
     int b = digitalRead(ENCODER_PIN_B);
-    int positionChange = position - previousPosition;
-    if (b > 0)
-    {
-        positionChange = abs(positionChange);
-    }
-    else
-    {
-        positionChange = -abs(positionChange);
-    }
 
-    // Check if a full revolution has been completed
-    if (abs(totalCounts) >= ENCODER_PPR)
+    if (a != lastA)
     {
-        // Reset total counts and consider only the remaining change for velocity calculation
-        totalCounts = positionChange % ENCODER_PPR;
-        positionChange = totalCounts;
+        if (a == HIGH)
+        {
+            if (b == LOW)
+            {
+                position--;
+            }
+            else
+            {
+                position++;
+            }
+        }
+        else
+        {
+            if (b == LOW)
+            {
+                position++;
+            }
+            else
+            {
+                position--;
+            }
+        }
     }
-    else
-    {
-        // Accumulate counts for the next calculation
-        totalCounts += positionChange;
-    }
+    lastA = a;
 }
 
 void setup()
@@ -146,7 +150,7 @@ void setup()
 
     pinMode(ENCODER_PIN_A, INPUT);
     pinMode(ENCODER_PIN_B, INPUT);
-    attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), readEncoder, RISING);
+    attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), readEncoder, CHANGE);
 
     pinMode(TEMP_OUT_PIN, OUTPUT);
     pinMode(MOTOR_PWM_PIN, OUTPUT);
@@ -190,7 +194,7 @@ void loop()
     lastError = error;
 
     // Constrain PID output to allowable PWM range and set motor direction
-    float controlSignal = constrain(pidOutput, -250, 250);
+    float controlSignal = constrain(pidOutput, -255, 255);
     int motorDirection = controlSignal >= 0 ? 1 : -1;
 
     // Set motor speed and direction
@@ -208,7 +212,7 @@ void loop()
     // Get temperature RAW
     int lm20_analogue = analogRead(LM_20_PIN);
 
-    // Convert raw adc to vold
+    // Convert raw adc to voltage
     int lm20_voltage = map(lm20_analogue, ADC_MIN, ADC_MAX, ADC_V_MIN, ADC_V_MAX);
 
     // Convert voltage to temperature
